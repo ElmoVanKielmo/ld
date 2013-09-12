@@ -1,0 +1,21 @@
+{% load static %}
+
+<div class="left_float battery">
+    <h2>Current battery status:</h2>
+    <ul>
+        <li>Present: {{ battery.is_present|default:"No" }}</li>
+        <li>Status: {{ battery.status|default:"Unknown" }}</li>
+        <li>Percentage: {{ battery.percentage|default:"Unknown" }} %</li>
+        {% if battery.is_charged %}
+            <li>Time to fully charged: {{ battery.time_to_charge|default:"Unknown" }}</li>
+        {% else %}
+            <li>Time to discharged: {{ battery.time_to_discharge|default:"Unknown" }}</li>
+        {% endif %}
+    </ul>
+</div>
+<div class="left_float">
+    {% with icon=battery.icon|default:"Status-battery-missing-icon.png" %}
+    <img src="{% static 'battery/img/'|add:icon %}" alt="{{ icon }}">
+    {% endwith %}
+</div>
+<div style="clear: both;"></div>

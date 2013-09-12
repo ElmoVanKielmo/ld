@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>{{ project_name }}</title>
+  <link rel="stylesheet" href="{% static 'common/css/style.css' %}" type="text/css" media="screen" />
+  <script type="text/javascript" src="{% static 'common/js/jquery-1.10.2.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'common/js/index.js' %}"></script>
+</head>
+
+<body>
+  <div id="logo"><h1>{{ project_name }}</h1></div>
+  <div id="basic-accordian">
+  {% for section_name, section_template in sections %}
+    <div class="section">
+      <div class="accordion_headings">{{ section_name }}</div>
+      <div class="accordion_child">{% include section_template %}</div>
+    </div>
+  {% endfor %}
+  </div>
+  <div id="footer">
+    <p>Łukasz Biernot (ElmoVanKielmo) - LGPLv3 | <a href="http://validator.w3.org/check?uri=referer">HTML 5</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.html5webtemplates.co.uk">design from HTML5webtemplates.co.uk</a></p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+#!/usr/bin/python
+
+"""Starts the tornado web server for the task showcase"""
+
+
+from ld_recruitment_lb.tornado_main import run
+
+run()

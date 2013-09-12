@@ -1,0 +1,31 @@
+{% load static %}
+
+<div class="left_float wifi">
+  <h2>Available WiFi networks:</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>SSID</th>
+        <th>Strength</th>
+        <th>Connected</th>
+        <th>Interface</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for access_point in wifi %}
+      <tr>
+        <td>{{ access_point.Ssid }}</td>
+        <td>{{ access_point.Strength }}</td>
+        <td>{{ access_point.Connected }}</td>
+        <td>{{ access_point.Interface }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div class="left_float">
+    {% with icon=icon|default:"no-wifi-networks.png" %}
+    <img src="{% static 'wifi/img/'|add:icon %}" alt="{{ icon }}">
+    {% endwith %}
+</div>
+<div style="clear: both;"></div>

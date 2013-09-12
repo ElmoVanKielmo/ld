@@ -1,6 +1,3 @@
-ld
-==
-
 Web based Battery and WiFi monitor
 
 1. LICENSE AND AUTHOR:
@@ -35,3 +32,4 @@ Web based Battery and WiFi monitor
 4. USAGE:
     - run web server with 'ld_recruitment_lb_run' (use --help for options)
     - start your web browser and enjoy
+

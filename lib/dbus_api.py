@@ -1,9 +1,15 @@
+"""Helper library for interacting with DBus"""
+
 from itertools import chain
 from threading import Event
 from dbusx import Connection, BUS_SYSTEM
 
 
 class DBusApi(object):
+    """
+    This class implements collecting data from dbus
+    and preprocessing the results
+    """
 
     NM = {
         "service": "org.freedesktop.NetworkManager",
@@ -23,6 +29,9 @@ class DBusApi(object):
 
     @classmethod
     def run_me(cls):
+        """
+        Entry point - loops waiting for requests from Django or shutdown events
+        """
         cls.__bus = Connection(BUS_SYSTEM)
         cls.query_event.clear()
         cls.response_event.clear()
@@ -43,6 +52,7 @@ class DBusApi(object):
 
     @classmethod
     def battery(cls):
+        """Grabs the battery related information"""
         upower = cls.__bus.proxy(
             "org.freedesktop.UPower",
             "/org/freedesktop/UPower"
@@ -60,6 +70,7 @@ class DBusApi(object):
 
     @classmethod
     def wifi(cls):
+        """Collects information about WiFi cards and access points"""
         nm = cls.__bus.proxy(cls.NM["service"], cls.NM["path"])
         devices = [
             cls.__bus.proxy(cls.NM["service"], device_path)
@@ -98,16 +109,3 @@ class DBusApi(object):
             access_point.update({key: properties[key][1] for key in properties})
             access_point.pop(u"AccessPoint")
         return access_points
-
-
-
-
-
-
-
-
-
-
-
-
-

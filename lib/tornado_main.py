@@ -1,4 +1,7 @@
 #!/usr/bin/python
+"""
+This module starts the entire application (tornado and dbus_api)
+"""
 
 from threading import Thread
 from tornado.options import define, options
@@ -11,6 +14,12 @@ from dbus_api import DBusApi
 
 
 def run():
+    """
+    Process command line arguments,
+    Start dbus_api in separate thread - ideally it would be a separate
+    daemon process, but currently this app is too tiny for 2 processes.
+    Start the Tornado Web Server for Django
+    """
     try:
         define("addr", default="127.0.0.1", help="Address to listen on")
         define("port", default="8000", help="Port to listen on")

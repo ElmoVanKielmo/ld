@@ -1,3 +1,8 @@
+"""
+This module contains wifi view
+"""
+
+
 from django.shortcuts import render_to_response
 from ld_recruitment_lb.dbus_api import DBusApi
 
@@ -10,6 +15,9 @@ WIFI_ICONS = [
 
 
 def wifi(request):
+    """
+    Ask DBus for wifi info (using api), prepare the context and render
+    """
     DBusApi.query = DBusApi.wifi
     DBusApi.query_event.set()
     DBusApi.response_event.wait()

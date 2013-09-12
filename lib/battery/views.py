@@ -1,3 +1,8 @@
+"""
+This module contains battery view
+"""
+
+
 from datetime import timedelta
 
 from django.shortcuts import render_to_response
@@ -38,6 +43,9 @@ BATTERY_ICONS = {
 
 
 def battery(request):
+    """
+    Ask DBus for battery info (using api), prepare the context and render
+    """
     DBusApi.query = DBusApi.battery
     DBusApi.query_event.set()
     DBusApi.response_event.wait(None)
